@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Лучшее предложение</title>
+</head>
+<body>
+
+<div sec:authorize="hasAuthority('USER')" class="container text-center">
+    <h1>Невероятно выгодное предложение!</h1>
+    <div>
+    <h3>!Не пропустите!</h3>
+        <h4>Лучшие переноски, которые подойдут для</h4>
+        <h3 th:text="${pet.name}"></h3>
+    </div>
+    </hr>
+
+<div class="container">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Название</th>
+        <th scope="col">Цена</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${goods}">
+        <td th:text="${item.getName()}"></td>
+        <td th:text="${item.getPrice()}"></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</div>
+    <div class="container text-center">
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <button class="btn html-editor-align-center">Выйти</button>
+        </form>
+    </div>
+
+</body>
+</html>
